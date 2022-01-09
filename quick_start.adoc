@@ -48,6 +48,10 @@ Now a placement can be created.  This will be used to determine which managed cl
 [IMPORTANT]
 ====
 The identity configuration management for Kubernetes Technology Preview does not yet utilize custom role definitions for controlling access to work with AuthRealms. Instead, it relies on the role-based access control implemented by multicluster engine and Advanced Cluster Management around ManagedClusterSets, ManagedClusterSetBindings, and Placements. AuthRealms must exist in a namespace containing a Placement, and the Placement leverages the ManagedClusterSets that are bound to that namespace. Access to namespaces with existing bound ManagedClusterSets and/or existing Placements should be managed accordingly.
+
+[IMPORTANT]
+====
+Before detaching cluster from hub, copy original OAuth from the ConfigMap named `idp-oauth-original` in the managed cluster's namespace on the hub cluster. After cluster is completely detached from hub cluster, manually edit the OAuth on the cluster which was managed by hub and update only spec from copied ConfigMap to OAuth. You should restore original OAuth on the managedcluster.
 ====
 
 
